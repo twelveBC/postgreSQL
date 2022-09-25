@@ -17,9 +17,6 @@ module.exports = (sequelize, DataTypes) => {
   UserGameBiodata.init({
     fullname: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    phone: DataTypes.STRING,
     UserGameId: DataTypes.INTEGER
   }, {
     sequelize,

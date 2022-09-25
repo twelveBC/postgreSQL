@@ -17,45 +17,25 @@
                   <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
       
-                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Biodata ( user )</p>
+                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Biodata <%= user %></p>
       
-                      <form autocomplete="off" class="mx-1 mx-md-4" method="post" action="/login">
+                      <form autocomplete="off" class="mx-1 mx-md-4" method="post" action="/biodata">
                         <div class="d-flex flex-row align-items-center mb-4">
                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                             <div class="form-outline flex-fill mb-0">
-                              <input required name="fullname" type="text" class="form-control" />
+                              <input name="fullname" type="text" class="form-control" placeholder="<%= name %>"/>
                               <label class="form-label" for="form3Example1c">Fullname</label>
                             </div>
                         </div>
-      
+
                         <div class="d-flex flex-row align-items-center mb-4">
-                          <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0 me-3">
-                            <input required name="age" type="password" class="form-control" />
-                            <label class="form-label" for="form3Example4c">Age</label>
-                          </div>
+                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input required name="gender" type="password" class="form-control" />
-                            <label class="form-label" for="form3Example4c">Gender</label>
+                            <input name="age" type="text" class="form-control" placeholder="<%= age %>"/>
+                            <label class="form-label" for="form3Example1c">Age</label>
                           </div>
-                        </div>
+                      </div>
 
-                        <div class="d-flex flex-row align-items-center mb-4">
-                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                            <div class="form-outline flex-fill mb-0">
-                              <input required name="adress" type="text" class="form-control" />
-                              <label class="form-label" for="form3Example1c">Adress</label>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row align-items-center mb-4">
-                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                            <div class="form-outline flex-fill mb-0">
-                              <input required name="phone" type="text" class="form-control" />
-                              <label class="form-label" for="form3Example1c">Phone</label>
-                            </div>
-                        </div>
-      
                         <div class="d-flex justify-content-left mx-3 mb-3 mb-lg-4">
                           <button type="submit" class="btn btn-primary btn-lg" value="Update">Update</button>
                         </div>

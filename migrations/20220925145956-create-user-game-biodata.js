@@ -14,15 +14,6 @@ module.exports = {
       age: {
         type: Sequelize.INTEGER
       },
-      address: {
-        type: Sequelize.STRING
-      },
-      gender: {
-        type: Sequelize.STRING
-      },
-      phone: {
-        type: Sequelize.STRING
-      },
       UserGameId:{
         type: Sequelize.INTEGER,
         references:{

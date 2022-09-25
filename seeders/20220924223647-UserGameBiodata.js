@@ -14,9 +14,6 @@ module.exports = {
      return queryInterface.bulkInsert('UserGameBiodata', [{
       fullname: 'admin',
       age: '18',
-      address: 'test',
-      gender: 'test',
-      phone: 'test',
       UserGameId: '1',
       createdAt: new Date(),
       updatedAt: new Date()
