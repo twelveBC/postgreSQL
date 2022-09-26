@@ -73,6 +73,8 @@ class Setting {
     }
   }
   
+  const xhttp = new XMLHttpRequest();
+  var base_url = window.location.origin;
   let game = new Gameplay();
   document.getElementById("myId").addEventListener("click",gameStart);
   document.getElementById("reset").addEventListener("click",resetGame);
@@ -88,6 +90,12 @@ class Setting {
         document.getElementById(`com${game.getBot()}`).classList.add("activePick");
         document.getElementById(game.getIsRule()).style.visibility = "visible";
         document.getElementById("vs").style.visibility = "hidden";
+
+        // POST DATA GAMES
+        xhttp.open("POST", `${base_url}/play`, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`user=${props.target.id}&com=${game.getBot()}&result=${game.getIsRule()}`);
+
         game.matchResult();
         if (game.player != null) {
           document.getElementById("myId").removeEventListener("click",gameStart);

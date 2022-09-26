@@ -1,4 +1,4 @@
-const { UserGames, UserGameBiodata, UserGamesHistories } = require("../models")
+const { UserGames, UserGameBiodata, UserGameHistories } = require("../models")
 
 module.exports = {
     viewLogin: async (req,res) =>{
@@ -174,4 +174,20 @@ module.exports = {
             res.send("gagal")
         }
     },
+
+    play: async (req, res) => {
+        try {
+            const id = req.session.user
+            let { user, com, result } = req.body
+            let data = {
+                user: user,
+                com: com,
+                result: result,
+                UserGameId:id.id
+            }
+            UserGameHistories.create(data)
+        } catch (error) {
+
+        }
+    }
 }

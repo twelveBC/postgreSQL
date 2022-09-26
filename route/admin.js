@@ -14,6 +14,7 @@ router.get("/isibiodata/:username/:fullname/:age", adminController.actionIsiBiod
 router.get("/dashboard", adminController.viewDashboard)
 
 router.get("/game", adminController.viewGameGBK)
+router.post("/play", adminController.play)
 
 router.get("/biodata", adminController.viewBiodata)
 router.get("/biodata/update", adminController.viewActionBiodata)
