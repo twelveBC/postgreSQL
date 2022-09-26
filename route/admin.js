@@ -18,6 +18,7 @@ router.get("/game", adminController.viewGameGBK)
 router.get("/biodata", adminController.viewBiodata)
 router.get("/biodata/update", adminController.viewActionBiodata)
 router.post("/biodata/update", adminController.ActionBiodata)
+
 router.get("/histori", adminController.viewHistory)
 router.get("/delete", adminController.deleteAccount)
 

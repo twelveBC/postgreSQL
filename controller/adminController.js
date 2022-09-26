@@ -143,9 +143,12 @@ module.exports = {
         try {
             const { fullname,age } = req.body
             const id = req.session.user
-            const users = await UserGameBiodata.findOne({where:{ UserGameId:id}})
-            console.log(users);
-            console.log(request);
+            console.log(id.id);
+            const users = await UserGameBiodata.findOne({where:{ UserGameId:id.id}})
+            console.log(users.fullname, users.age);
+            users.fullname = fullname
+            users.age = age
+            await users.save()
             res.redirect("/dashboard")
         } catch (error) {
             res.send('gagal')
@@ -158,7 +161,6 @@ module.exports = {
                 return res.redirect('/login')
             }
             let user = req.session.user
-            console.log(user.id)
             res.render("histori")
         } catch (error) {
             
