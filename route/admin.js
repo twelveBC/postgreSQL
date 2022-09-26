@@ -16,7 +16,9 @@ router.get("/dashboard", adminController.viewDashboard)
 router.get("/game", adminController.viewGameGBK)
 
 router.get("/biodata", adminController.viewBiodata)
-router.post("/biodata", adminController.actionBiodata)
+router.get("/biodata/update", adminController.viewActionBiodata)
+router.post("/biodata/update", adminController.ActionBiodata)
 router.get("/histori", adminController.viewHistory)
+router.get("/delete", adminController.deleteAccount)
 
 module.exports = router

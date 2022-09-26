@@ -20,7 +20,8 @@ module.exports = {
                 return res.render("login",{user:true})
             } else if(users.password == password) {
                 req.session.user = {
-                    username: users.username
+                    username: users.username,
+                    id: users.id
                 }
                 return res.redirect('/dashboard');
             }
@@ -28,7 +29,8 @@ module.exports = {
         } catch (error) {
             res.redirect("/login")
         }
-    },actionLogout: async (req,res) =>{
+    },
+    actionLogout: async (req,res) =>{
         try {
             req.session.destroy()
             res.redirect("/login")
@@ -92,34 +94,20 @@ module.exports = {
 
     viewDashboard: async (req,res) =>{
         try {
-            if (req.session.user != null || req.session.user != undefined){
-                return res.render("dashboard",{
-                    user: req.session.user
-                })
-            } else {
-                return  res.redirect('/login')
-            }       
+            if (req.session.user == undefined || req.session.user == null){
+                return res.redirect('/login')
+            }
+            res.render("dashboard",{ user: req.session.user })        
         } catch (error) {
             res.send("semangat bang")
         }
     },
     viewGameGBK: async (req,res) =>{
         try {
-            if (req.session.user != null || req.session.user != undefined){
-                return res.render("game",{
-                    user: req.session.user
-                })
-            } else {
-                return  res.redirect('/login')
-            }   
-        } catch (error) {
-            
-        }
-    },
-
-    viewHistory: async (req,res) =>{
-        try {
-            res.render("histori")
+            if (req.session.user == undefined || req.session.user == null){
+                return res.redirect('/login')
+            }
+            res.render("game",{ user: req.session.user })
         } catch (error) {
             
         }
@@ -127,10 +115,12 @@ module.exports = {
 
     viewBiodata: async (req,res) =>{
         try {
+            if (req.session.user == undefined || req.session.user == null){
+                return res.redirect('/login')
+            }
             let user = req.session.user
             const users = await UserGames.findOne({where:{username:user.username}})
             const bio = await UserGameBiodata.findOne({where:{UserGameId:users.id}})
-            let { name, age } = req.body
             res.render("biodata",{
                 name:bio.fullname,
                 age:bio.age,
@@ -140,12 +130,46 @@ module.exports = {
             
         }
     },
-    actionBiodata: async (req,res) =>{
+    viewActionBiodata: async (req,res) =>{
         try {
-            console.log(req.body);
-            res.redirect("/biodata")
+            if (req.session.user == undefined || req.session.user == null){
+                return res.redirect('/login')
+            }       
+            res.render("updateBiodata")
+        } catch (error) {
+            res.send('gagal')
+        }
+    },ActionBiodata: async (req,res) =>{
+        try {
+            const { fullname,age } = req.body
+            const id = req.session.user
+            const users = await UserGameBiodata.findOne({where:{ UserGameId:id}})
+            console.log(users);
+            console.log(request);
+            res.redirect("/dashboard")
+        } catch (error) {
+            res.send('gagal')
+        }
+    },
+
+    viewHistory: async (req,res) =>{
+        try {
+            if (req.session.user == undefined || req.session.user == null){
+                return res.redirect('/login')
+            }
+            let user = req.session.user
+            console.log(user.id)
+            res.render("histori")
         } catch (error) {
             
+        }
+    },
+
+    deleteAccount: async (req,res) =>{
+        try {
+            res.send("delete account success")
+        } catch (error) {
+            res.send("gagal")
         }
     },
 }
